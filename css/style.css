@@ -1,0 +1,142 @@
+*{
+  margin: 0;
+}
+
+body {
+    background-color: black;
+    color: rgb(211, 141, 252);
+    text-align: center;
+    font-family: "Metamorphous", serif;
+    font-weight: 400;
+    font-style: normal;
+    padding-bottom: 3rem; 
+}
+.imagen-banner{
+  width: 100%;
+  height: 15rem;
+  background-image: url("../img/wow_banner1.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.container-cards {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding-top: 2rem;
+}
+
+#preguntas-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin-top: 2rem;
+}
+
+.card{
+    min-width: 200px;
+    min-height: 200px;
+    background-color: #222;
+    padding: 3rem;
+    border-radius: 2rem;
+    margin: 2rem;
+}
+.card h2{
+    min-height: 20%;
+}
+
+.opciones-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.opcion-btn, button{
+    background-color: #602ab6;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: "Metamorphous", serif;
+    font-size: 15px;
+    margin: 0.6rem;
+    min-height: 6rem;
+    min-width: 9rem;
+}
+.btn-volver{
+  margin-top: 1rem;
+  font-size: 30px;
+  width: 15rem;
+  text-align: center;
+}
+
+.btn-volver:hover {
+    background-color: rgb(211, 141, 252);
+}
+
+:disabled{
+  background-color: rgb(81, 63, 92);
+  cursor: not-allowed;
+}
+.verde{
+  background-color: rgb(2, 199, 101);
+}
+.roja{
+  background-color: rgb(190, 1, 1);
+}
+
+#contador-aciertos, #contador-erroneas, #ultimo-puntaje {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background: #222;
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#contador-erroneas{
+  top: 60px;
+}
+
+#ultimo-puntaje{
+  top: 110px;
+}
+
+.solucion{
+  margin-top: 0.5rem;
+    font-size: 22px;
+    font-weight: bold;
+    color: #fff;
+}
+
+#mensaje{
+  padding: 1rem;
+  margin: 3rem;
+  justify-items: center;
+  background-color: #222;
+  font-size: 2rem;
+  color: rgb(211, 141, 252);
+  border-radius: 2rem;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.subir{
+  cursor: pointer;
+}
+
+@media (min-width: 1280px) {
+  #preguntas-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .opcion-btn{
+    font-size: 17px;
+  }
+}
