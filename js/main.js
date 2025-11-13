@@ -81,13 +81,14 @@ const preguntas = [
   }
 ]
 
-// Buaca el elemento cuyo id sea preguntas-container
+// Busca el elemento cuyo id sea preguntas-container
 let preguntasContainer = document.getElementById("preguntas-container")
 
 // Funcion para mostrar cards con las preguntas del array
 function mostrarPreguntas(arrayPreguntas) {
-  arrayPreguntas.forEach((interrogante, indice) => {
+    const resultados = obtenerResultados()
 
+  arrayPreguntas.forEach((interrogante, indice) => {
     const card = document.createElement("div")
     card.classList.add("card")
     card.id = indice
@@ -112,7 +113,7 @@ function mostrarPreguntas(arrayPreguntas) {
 
     preguntasContainer.appendChild(card)
 
-     if (localStorage.getItem(indice)) {
+     if (resultados[indice]) {
       const botonesCard = card.querySelectorAll(".opcion-btn")
       botonesCard.forEach(btn => btn.disabled = true)
     }
@@ -125,13 +126,23 @@ mostrarPreguntas(preguntas)
 
 actualizarContador()
 
-
+// Asigna un evento a los botones
 function activarOpciones() {
   const botones = document.querySelectorAll(".opcion-btn")
   botones.forEach(boton => {
     boton.addEventListener("click", manejarRespuesta)
   })
 }
+
+// Obtener y guardar resultados en un array en el storage
+function obtenerResultados() {
+  return JSON.parse(localStorage.getItem("resultados")) || Array(preguntas.length).fill(null)
+}
+
+function guardarResultados(array) {
+  localStorage.setItem("resultados", JSON.stringify(array))
+}
+
 
 function manejarRespuesta(e) {
   const indice = e.currentTarget.getAttribute("indice")
@@ -143,15 +154,19 @@ function manejarRespuesta(e) {
   const card = document.getElementById(indice)
   const solucion = card.querySelector(".solucion")
 
+  const resultados = obtenerResultados()
+
   if (respuestaElegida === correcta) {
-    localStorage.setItem(indice, "bien")
+    resultados[indice] = "bien"
     solucion.textContent = "✅ ¡Correcto!"
     e.currentTarget.classList.add("verde")
   } else {
-    localStorage.setItem(indice, "mal")
+    resultados[indice] = "mal"
     solucion.textContent = "❌ Incorrecto. La correcta era: " + correcta
     e.currentTarget.classList.add("roja")
   }
+
+    guardarResultados(resultados)
 
   const botonesCard = card.querySelectorAll(".opcion-btn")
   botonesCard.forEach(btn => btn.disabled = true)
@@ -161,15 +176,10 @@ function manejarRespuesta(e) {
 
 // Actualiza el contador con localStorage
 function actualizarContador() {
-  let correctas = 0
-  let incorrectas = 0
+ const resultados = obtenerResultados()
 
-  // guion bajo en pregunta porque no se usa el parametro
-  preguntas.forEach((_pregunta, indice) => {
-    const resultado = localStorage.getItem(indice)
-    if (resultado === "bien") correctas++
-    if (resultado === "mal") incorrectas++
-  })
+   const correctas = resultados.filter(resultado => resultado === "bien").length
+  const incorrectas = resultados.filter(resultado => resultado === "mal").length
 
   document.getElementById("contador-aciertos").textContent =
     `Aciertos: ${correctas} / ${preguntas.length}`
@@ -180,7 +190,7 @@ function actualizarContador() {
     mostrarMensajeFinal(correctas, incorrectas)
   }
 
-  const ultimo = localStorage.getItem("ultimoPuntaje")
+  const ultimo = localStorage.getItem("ultimoPuntaje") || []
 if (ultimo !== null) {
   document.getElementById("ultimo-puntaje").textContent = `Último puntaje: ${ultimo}`
 }
@@ -189,7 +199,9 @@ if (ultimo !== null) {
 
 // Muestra el mensaje final con el resumen
 function mostrarMensajeFinal(correctas, incorrectas) {
-  const respuestasBien = preguntas.filter((_pregunta, indice) => localStorage.getItem(indice) === "bien").length
+   const resultados = JSON.parse(localStorage.getItem("resultados")) || []
+
+   const respuestasBien = resultados.filter(r => r === "bien").length
 
   if(respuestasBien >= 5){
       mensajeExtra = "¡Sos un verdadero héroe de Azeroth!"}
@@ -206,7 +218,7 @@ function mostrarMensajeFinal(correctas, incorrectas) {
 }
 
 
-// Crea el botón "Volver a intentar"
+// Crea el botón "Resetear"
 function crearBotonVolver(contenedor) {
   const button = document.createElement("button")
   button.classList.add("btn-volver")
@@ -214,7 +226,8 @@ function crearBotonVolver(contenedor) {
 
   button.addEventListener("click", () => {
     // localStorage.clear()
-     preguntas.forEach((_pregunta, indice) => localStorage.removeItem(indice))
+    localStorage.removeItem("resultados")
+
 
     preguntasContainer.innerHTML = ""
     contenedor.innerHTML = ""

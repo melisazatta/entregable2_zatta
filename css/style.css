@@ -38,9 +38,10 @@ body {
     min-width: 200px;
     min-height: 200px;
     background-color: #222;
-    padding: 3rem;
+    padding: 1rem;
     border-radius: 2rem;
     margin: 2rem;
+    padding-bottom: 2.5rem;
 }
 .card h2{
     min-height: 20%;
@@ -63,7 +64,6 @@ body {
     font-weight: bold;
     font-family: "Metamorphous", serif;
     font-size: 15px;
-    margin: 0.6rem;
     min-height: 6rem;
     min-width: 9rem;
 }
@@ -136,7 +136,14 @@ body {
   #preguntas-container {
     grid-template-columns: repeat(2, 1fr);
   }
-  .opcion-btn{
+}
+
+@media (min-width: 768px){
+    .opcion-btn{
     font-size: 17px;
+    margin: 0.6rem;
+  }
+  .card{
+    padding: 3rem;
   }
 }
