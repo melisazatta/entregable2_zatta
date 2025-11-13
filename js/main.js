@@ -136,7 +136,14 @@ function activarOpciones() {
 
 // Obtener y guardar resultados en un array en el storage
 function obtenerResultados() {
-  return JSON.parse(localStorage.getItem("resultados")) || Array(preguntas.length).fill(null)
+  const guardados = JSON.parse(localStorage.getItem("resultados"))
+  if (guardados) return guardados
+
+  const resultados = []
+  for (const _pregunta of preguntas) {
+    resultados.push(null)
+  }
+  return resultados
 }
 
 function guardarResultados(array) {
