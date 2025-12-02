@@ -1,94 +1,30 @@
-const preguntas = [
-  {
-    pregunta: "¿Qué raza lidera Thrall?",
-    opciones: ["Tauren", "Trols", "Orcos", "No-muertos"],
-    respuesta: "Orcos",
-  },
-  {
-    pregunta: "¿Por qué los murlocs hacen 'mrglglglgl'?",
-    opciones: [
-      "Es su idioma oficial",
-      "Porque están ofendidos",
-      "Porque te quieren atacar",
-      "Porque no pagaron el curso de oratoria",
-    ],
-    respuesta: "Es su idioma oficial",
-  },
-  {
-    pregunta: "¿Cómo llama Sylvanas a su despertador?",
-    opciones: [
-      "Mi alarma del tormento",
-      "Val'kyr inteligente",
-      "El otro esclavo",
-      "La última esperanza",      
-    ],
-    respuesta: "Val'kyr inteligente",
-  },
-  {
-    pregunta: "¿Cuál es la principal habilidad secreta de los trols de Zul'Gurub?",
-    opciones: [
-      "Cocinar pizza voodoo",
-      "Bailar reggae",
-      "Hacer sacrificios dramáticos",
-      "Resetearse cuando los farmean demasiado",
-    ],
-    respuesta: "Resetearse cuando los farmean demasiado",
-  },
-  {
-    pregunta: "¿Qué hace un tauren cuando se cansa?",
-    opciones: [
-      "Se convierte en hamburguesa",
-      "Muge por ayuda",
-      "Se sienta en una roca filosóficamente",
-      "Pide DPS pero no va",
-    ],
-    respuesta: "Se sienta en una roca filosóficamente",
-  },
-  {
-    pregunta: "¿Cuál de estos personajes se convirtió en el Rey Exánime (Lich King)?",
-    opciones: [
-      "Illidan Stormrage",
-      "Kael'thas Sunstrider",
-      "Arthas Menethil",
-      "Gul'dan",
-    ],
-    respuesta: "Arthas Menethil",
-  },
-  {
-    pregunta: "¿De qué clase es originalmente Illidan?",
-    opciones: ["Guerrero", "Cazador de demonios", "Chamán", "Mago"],
-    respuesta: "Cazador de demonios",
-  },
-  {
-    pregunta: "¿Quién lidera a los Renegados (Forsaken)?",
-    opciones: ["Sylvanas Brisaveloz", "Kel'Thuzad", "Varimathras", "Nathanos"],
-    respuesta: "Sylvanas Brisaveloz",
-  },
-  {
-    pregunta: "¿Quién fue el líder de la Horda antes de Vol'jin?",
-    opciones: [
-      "Garrosh Hellscream",
-      "Thrall",
-      "Cairne Pezuña de Sangre",
-      "Rexxar",
-    ],
-    respuesta: "Garrosh Hellscream",
-  },
-  {
-    pregunta: "¿Qué raza es Tyrande Susurravientos?",
-    opciones: ["Humana", "Draenei", "Elfa de la noche", "Alto elfa"],
-    respuesta: "Elfa de la noche",
-  }
-]
+
+// Obtener preguntas del json
+const URL = "./db/data.json"
+
+let preguntas = []
+
+function obtenerPreguntas() {
+fetch(URL)
+.then(response => response.json())
+.then(data => {
+  preguntas = data
+  mostrarPreguntas(data)
+  actualizarContador()
+})
+.catch(err => console.log("Hubo un error", err))
+.finally(() => console.log("Petición finalizada."))
+
+}
 
 // Busca el elemento cuyo id sea preguntas-container
-let preguntasContainer = document.getElementById("preguntas-container")
+const preguntasContainer = document.getElementById("preguntas-container")
 
-// Funcion para mostrar cards con las preguntas del array
-function mostrarPreguntas(arrayPreguntas) {
+// Crea cards con las preguntas del json
+function mostrarPreguntas(listaPreguntas) {
     const resultados = obtenerResultados()
 
-  arrayPreguntas.forEach((interrogante, indice) => {
+  listaPreguntas.forEach((interrogante, indice) => {
     const card = document.createElement("div")
     card.classList.add("card")
     card.id = indice
@@ -121,10 +57,11 @@ function mostrarPreguntas(arrayPreguntas) {
 
   activarOpciones()
 }
+obtenerPreguntas()
 
-mostrarPreguntas(preguntas)
+// mostrarPreguntas(preguntas)
 
-actualizarContador()
+// actualizarContador()
 
 // Asigna un evento a los botones
 function activarOpciones() {
@@ -139,6 +76,8 @@ function obtenerResultados() {
   const guardados = JSON.parse(localStorage.getItem("resultados"))
   if (guardados) return guardados
 
+  if (preguntas[0] === undefined) return []
+
   const resultados = []
   for (const _pregunta of preguntas) {
     resultados.push(null)
@@ -146,6 +85,7 @@ function obtenerResultados() {
   return resultados
 }
 
+// Guarda resultados en storage
 function guardarResultados(array) {
   localStorage.setItem("resultados", JSON.stringify(array))
 }
@@ -197,7 +137,7 @@ function actualizarContador() {
     mostrarMensajeFinal(correctas, incorrectas)
   }
 
-  const ultimo = localStorage.getItem("ultimoPuntaje") || []
+  const ultimo = localStorage.getItem("ultimoPuntaje")
 if (ultimo !== null) {
   document.getElementById("ultimo-puntaje").textContent = `Último puntaje: ${ultimo}`
 }
@@ -205,42 +145,112 @@ if (ultimo !== null) {
 
 
 // Muestra el mensaje final con el resumen
-function mostrarMensajeFinal(correctas, incorrectas) {
-   const resultados = JSON.parse(localStorage.getItem("resultados")) || []
+// function mostrarMensajeFinal(correctas, incorrectas) {
+//    const resultados = JSON.parse(localStorage.getItem("resultados")) || []
 
-   const respuestasBien = resultados.filter(r => r === "bien").length
+//    const respuestasBien = resultados.filter(r => r === "bien").length
 
-  if(respuestasBien >= 5){
-      mensajeExtra = "¡Sos un verdadero héroe de Azeroth!"}
-    else {mensajeExtra = "Tu conocimiento del WoW fue absorbido por un murloc."}
+//   if(respuestasBien >= 5){
+//       mensajeExtra = "¡Sos un verdadero héroe de Azeroth!"}
+//     else {mensajeExtra = "Tu conocimiento del WoW fue absorbido por un murloc."}
 
-  const mensajeFinal = document.getElementById("mensaje")
-  mensajeFinal.textContent = `Bien! Terminaste la Trivia.
-  De ${preguntas.length} preguntas, respondiste ${correctas} bien y ${incorrectas} mal. ${mensajeExtra}`
+//   const mensajeFinal = document.getElementById("mensaje")
+//   mensajeFinal.textContent = `Bien! Terminaste la Trivia.
+//   De ${preguntas.length} preguntas, respondiste ${correctas} bien y ${incorrectas} mal. ${mensajeExtra}`
 
-  localStorage.setItem("ultimoPuntaje", correctas)
+//   localStorage.setItem("ultimoPuntaje", correctas)
 
-  // Llama a la función para crear y agregar el botón
-  crearBotonVolver(mensajeFinal)
-}
+//   // Llama a la función para crear y agregar el botón
+//   crearBotonVolver(mensajeFinal)
+  
+// }
 
+// Guardar Ranking
+function guardarRanking(nombre, puntaje) {
+  const ranking = JSON.parse(localStorage.getItem("ranking")) || []
 
-// Crea el botón "Resetear"
-function crearBotonVolver(contenedor) {
-  const button = document.createElement("button")
-  button.classList.add("btn-volver")
-  button.textContent = "Resetear"
-
-  button.addEventListener("click", () => {
-    // localStorage.clear()
-    localStorage.removeItem("resultados")
-
-
-    preguntasContainer.innerHTML = ""
-    contenedor.innerHTML = ""
-    mostrarPreguntas(preguntas)
-    actualizarContador()
+  ranking.push({
+    nombre: nombre,
+    puntaje: puntaje,
+    fecha: new Date().toLocaleDateString()
   })
 
-  contenedor.appendChild(button)
+  // Ordena de mayor a menor
+  ranking.sort((a, b) => b.puntaje - a.puntaje)
+
+  localStorage.setItem("ranking", JSON.stringify(ranking))
+}
+
+// Alerta con resultados
+function mostrarMensajeFinal(correctas, incorrectas) {
+  const resultados = obtenerResultados()
+  const respuestasBien = resultados.filter(r => r === "bien").length
+
+  let mensajeExtra =
+    respuestasBien >= 5
+      ? "¡Sos un verdadero héroe de Azeroth!"
+      : "Tu conocimiento del WoW fue absorbido por un murloc."
+
+  const mensaje = `
+    <p>Bien! Terminaste la Trivia.</p>
+    <p>De ${preguntas.length} preguntas, respondiste:</p>
+    <p>✅ ${correctas} bien</p>
+    <p>❌ ${incorrectas} mal</p>
+    <p>${mensajeExtra}</p>
+    <br></br>
+    <strong>Ingresá tu nombre para guardarlo en el ranking:</strong>
+  `
+
+  // Guardar puntaje final
+  localStorage.setItem("ultimoPuntaje", correctas)
+  // guardarRanking(correctas)
+
+  Swal.fire({
+    title: 'Resultado final',
+    html: mensaje,
+    input: "text",
+    inputPlaceholder: "Tu nombre",
+    confirmButtonText: 'Guardar',
+    allowOutsideClick: false,
+    allowEscapeKey: false,
+    inputValidator: value => {
+      if (!value.trim()) return "Tenés que ingresar un nombre."
+    },
+    customClass: {
+      popup: "wow-popup",
+      confirmButton: "wow-button"
+    }
+  }).then(result => {
+    if (result.isConfirmed) {
+
+      const nombre = result.value.trim()
+
+      guardarRanking(nombre, correctas)
+      localStorage.setItem("ultimoPuntaje", correctas)
+
+   Swal.fire({
+        title: "Guardado!",
+        text: "Tu puntaje fue agregado al ranking.",
+        icon: "success",
+        confirmButtonText: "Aceptar",
+        customClass: {
+          popup: "wow-popup",
+          confirmButton: "wow-button"
+        }
+  }).then(() => {
+    // Resetear
+    resetearTrivia()
+  })
+}
+  })
+}
+
+function resetearTrivia() {
+  localStorage.removeItem("resultados")
+
+    preguntasContainer.innerHTML = ""
+    document.getElementById("mensaje").innerHTML = ""
+
+    mostrarPreguntas(preguntas)
+    actualizarContador()
 }

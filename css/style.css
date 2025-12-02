@@ -14,7 +14,7 @@ body {
 .imagen-banner{
   width: 100%;
   height: 15rem;
-  background-image: url("../img/wow_banner1.jpeg");
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.85) 100%), url("../img/wow_banner1.jpeg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -23,7 +23,7 @@ body {
 .container-cards {
     width: 90%;
     max-width: 1200px;
-    margin: auto;
+    margin: 0 auto;
     padding-top: 2rem;
 }
 
@@ -40,8 +40,11 @@ body {
     background-color: #222;
     padding: 1rem;
     border-radius: 2rem;
-    margin: 2rem;
     padding-bottom: 2.5rem;
+     margin-left: 0.4rem;
+    margin-right: 0.4rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 .card h2{
     min-height: 20%;
@@ -57,15 +60,20 @@ body {
 .opcion-btn, button{
     background-color: #602ab6;
     color: white;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem;
     border-radius: 30px;
     border: none;
     cursor: pointer;
     font-weight: bold;
     font-family: "Metamorphous", serif;
-    font-size: 15px;
+    font-size: 14px;
     min-height: 6rem;
-    min-width: 9rem;
+    min-width: auto;
+    text-decoration: none;
+}
+
+.opcion-btn:hover{
+  background-color: rgb(211, 141, 252);
 }
 .btn-volver{
   margin-top: 1rem;
@@ -101,6 +109,21 @@ body {
   font-weight: bold;
 }
 
+#mostrar-ranking{
+  left: 10px;
+  position: fixed;
+  top: 10px;
+  background: #602ab6;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+}
+#mostrar-ranking a{
+  text-decoration: none;
+  color: #fff;
+}
+
 #contador-erroneas{
   top: 60px;
 }
@@ -120,7 +143,6 @@ body {
   padding: 1rem;
   margin: 3rem;
   justify-items: center;
-  background-color: #222;
   font-size: 2rem;
   color: rgb(211, 141, 252);
   border-radius: 2rem;
@@ -128,10 +150,90 @@ body {
   grid-template-columns: 1fr;
 }
 
+.wow-popup {
+  background: #000;
+  border: 2px solid #602ab6;
+  border-radius: 2rem;
+  box-shadow: 0 0 25px #000;
+  color: rgb(211, 141, 252);
+  background-image:  linear-gradient(rgba(54, 0, 92, 0.384), rgba(75, 0, 130, 0.6)), url(../img/sylvanas.jpg);
+}
+
+.wow-button {
+  background: #602ab6;
+  color: #fff;
+  font-size: 1.2rem;
+  border-radius: 2rem;
+  border: 2px solid #602ab6;
+  transition: 0.2s;
+}
+
 .subir{
   cursor: pointer;
 }
 
+/* Ranking */
+.ranking-page{
+  font-family: "Metamorphous", serif;
+}
+#ranking-container {
+  margin: 2rem auto;
+  max-width: 600px;
+  text-align: center;
+}
+
+#ranking-container h2 {
+  margin-bottom: 1rem;
+}
+
+.tabla-ranking {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.tabla-ranking th,
+.tabla-ranking td {
+  border: 1px solid #444;
+  padding: 8px 12px;
+}
+
+.tabla-ranking th {
+  background-color: #602ab6;
+  color: #fff;
+}
+
+.item-ranking:nth-child(even) {
+  background-color: #222;
+}
+
+.item-ranking:nth-child(odd) {
+  background-color: #111;
+}
+
+.item-ranking:nth-child(1) .medalla::before {
+  content: "🥇";
+}
+
+.item-ranking:nth-child(2) .medalla::before {
+  content: "🥈";
+}
+
+.item-ranking:nth-child(3) .medalla::before {
+  content: "🥉";
+}
+.medalla {
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  margin-right: 6px;
+  font-size: 20px;
+}
+
+
+/* Media */
 @media (min-width: 1280px) {
   #preguntas-container {
     grid-template-columns: repeat(2, 1fr);
@@ -145,5 +247,10 @@ body {
   }
   .card{
     padding: 3rem;
+  }
+}
+@media (min-width: 480px){
+  .card{
+        margin: 2rem;
   }
 }

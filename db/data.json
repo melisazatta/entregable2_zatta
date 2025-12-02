@@ -1,0 +1,82 @@
+  [
+    {
+    "pregunta": "¿Qué raza lidera Thrall?",
+    "opciones": ["Tauren", "Trols", "Orcos", "No-muertos"],
+    "respuesta": "Orcos"
+  },
+  {
+    "pregunta": "¿Por qué los murlocs hacen 'mrglglglgl'?",
+    "opciones": [
+      "Es su idioma oficial",
+      "Porque están ofendidos",
+      "Porque te quieren atacar",
+      "Porque no pagaron el curso de oratoria"
+    ],
+    "respuesta": "Es su idioma oficial"
+  },
+  {
+    "pregunta": "¿Cómo llama Sylvanas a su despertador?",
+    "opciones": [
+      "Mi alarma del tormento",
+      "Val'kyr inteligente",
+      "El otro esclavo",
+      "La última esperanza"
+    ],
+    "respuesta": "Val'kyr inteligente"
+  },
+  {
+    "pregunta": "¿Cuál es la principal habilidad secreta de los trols de Zul'Gurub?",
+    "opciones": [
+      "Cocinar pizza voodoo",
+      "Bailar reggae",
+      "Hacer sacrificios dramáticos",
+      "Resetearse cuando los farmean demasiado"
+    ],
+    "respuesta": "Resetearse cuando los farmean demasiado"
+  },
+  {
+    "pregunta": "¿Qué hace un tauren cuando se cansa?",
+    "opciones": [
+      "Se convierte en hamburguesa",
+      "Muge por ayuda",
+      "Se sienta en una roca filosóficamente",
+      "Pide DPS pero no va"
+    ],
+    "respuesta": "Se sienta en una roca filosóficamente"
+  },
+  {
+    "pregunta": "¿Cuál de estos personajes se convirtió en el Rey Exánime (Lich King)?",
+    "opciones": [
+      "Illidan Stormrage",
+      "Kael'thas Sunstrider",
+      "Arthas Menethil",
+      "Gul'dan"
+    ],
+    "respuesta": "Arthas Menethil"
+  },
+  {
+    "pregunta": "¿De qué clase es originalmente Illidan?",
+    "opciones": ["Guerrero", "Cazador de demonios", "Chamán", "Mago"],
+    "respuesta": "Cazador de demonios"
+  },
+  {
+    "pregunta": "¿Quién lidera a los Renegados (Forsaken)?",
+    "opciones": ["Sylvanas Brisaveloz", "Kel'Thuzad", "Varimathras", "Nathanos"],
+    "respuesta": "Sylvanas Brisaveloz"
+  },
+  {
+    "pregunta": "¿Quién fue el líder de la Horda antes de Vol'jin?",
+    "opciones": [
+      "Garrosh Hellscream",
+      "Thrall",
+      "Cairne Pezuña de Sangre",
+      "Rexxar"
+    ],
+    "respuesta": "Garrosh Hellscream"
+  },
+  {
+    "pregunta": "¿Qué raza es Tyrande Susurravientos?",
+    "opciones": ["Humana", "Draenei", "Elfa de la noche", "Alto elfa"],
+    "respuesta": "Elfa de la noche"
+  }
+]
