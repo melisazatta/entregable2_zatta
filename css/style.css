@@ -72,7 +72,7 @@ body {
     text-decoration: none;
 }
 
-.opcion-btn:hover{
+.opcion-btn:focus{
   background-color: rgb(211, 141, 252);
 }
 .btn-volver{
@@ -150,6 +150,21 @@ body {
   grid-template-columns: 1fr;
 }
 
+/* Soluciona color Icon */
+.swal2-icon.swal2-success {
+
+.swal2-success-circular-line-left,
+.swal2-success-fix,
+.swal2-success-circular-line-right {
+	background-color: transparent !important;
+}
+
+.swal2-success-line-tip,
+.swal2-success-line-long {
+	background-color: white !important;
+}
+}
+
 .wow-popup {
   background: #000;
   border: 2px solid #602ab6;
@@ -178,7 +193,7 @@ body {
 }
 #ranking-container {
   margin: 2rem auto;
-  max-width: 600px;
+  max-width: 580px;
   text-align: center;
 }
 
@@ -195,7 +210,7 @@ body {
 .tabla-ranking th,
 .tabla-ranking td {
   border: 1px solid #444;
-  padding: 8px 12px;
+  padding: 6px 8px;
 }
 
 .tabla-ranking th {
@@ -253,4 +268,12 @@ body {
   .card{
         margin: 2rem;
   }
+  .tabla-ranking th,
+  .tabla-ranking td {
+  border: 1px solid #444;
+  padding: 8px 12px;
+}
+#ranking-container {
+  max-width: 800px;
+}
 }
