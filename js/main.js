@@ -210,11 +210,16 @@ function mostrarMensajeFinal(correctas, incorrectas) {
     html: mensaje,
     input: "text",
     inputPlaceholder: "Tu nombre",
+     inputAttributes: {
+    maxlength: 8
+  },
     confirmButtonText: 'Guardar',
     allowOutsideClick: false,
     allowEscapeKey: false,
     inputValidator: value => {
-      if (!value.trim()) return "Tenés que ingresar un nombre."
+      if (!value.trim()) {return "Tenés que ingresar un nombre."}
+      if (value.trim().length > 8) {
+    return "Máximo 8 caracteres."}
     },
     customClass: {
       popup: "wow-popup",
