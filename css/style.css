@@ -226,6 +226,10 @@ body {
 .tabla-ranking th {
   background-color: #602ab6;
   color: #fff;
+  font-size: 13px;
+}
+.tabla-ranking td {
+  font-size: 15px;
 }
 
 .item-ranking:nth-child(even) {
@@ -263,6 +267,7 @@ body {
   cursor: pointer;
   font-size: 18px;
   background: none;
+  margin: 0.5rem;
 }
 
 
@@ -293,6 +298,7 @@ body {
   .tabla-ranking td {
   border: 1px solid #444;
   padding: 8px 12px;
+  font-size: 20px;
 }
 #ranking-container {
   max-width: 800px;

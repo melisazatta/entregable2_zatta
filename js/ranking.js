@@ -19,7 +19,7 @@ function mostrarRanking() {
           <th>Nombre</th>
           <th>Puntos</th>
           <th>Fecha</th>
-          <th>Acciones</th>
+          <th>Acción</th>
 
         </tr>
       </thead>
