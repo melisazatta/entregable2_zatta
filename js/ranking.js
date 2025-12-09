@@ -88,7 +88,6 @@ mostrarRanking()
 function obtenerRanking() {
   const ranking = JSON.parse(localStorage.getItem("ranking")) || []
   return ranking
-  //   .sort((a, b) => b.puntaje - a.puntaje)
 }
 
 //Muestra hasta 15 resultados

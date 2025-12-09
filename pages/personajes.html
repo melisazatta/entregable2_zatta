@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-     <!-- Fuente -->
+    <!-- Fuente -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Metamorphous&display=swap"
@@ -13,25 +12,22 @@
         <!-- Favicon -->
     <link rel="icon" href="./favicon.png" type="image/png">
 
-    <link rel="stylesheet" href="./css/style.css">
 
-    <script defer src="./js/ranking.js"></script>
-    <title>Ranking</title>
+    <script defer src="../js/personajes.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Personajes</title>
 </head>
-<body class="ranking-page">
-     <header>
+ <header>
        <div id="banner" class="imagen-banner"></div>
     </header>
-
-    <section id="ranking-container">
-        
-    </section>
-    <div id="vaciar-ranking">
-        <a class="btn-volver" href="./index.html">Volver</a>
+<body class="personajes-body">
+      <div id="home">
+         <a href="../index.html">Home</a>
     </div>
-
-    <!-- SweetAlert -->
-     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+    <div id="mostrar-ranking">
+         <a href="../ranking.html">Ranking</a>
+    </div>
+    <h1 id="titulo">Personajes</h1>
+    <div id="personajes-container"></div>
 </body>
 </html>
